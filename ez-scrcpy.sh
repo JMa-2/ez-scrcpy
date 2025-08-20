@@ -9,7 +9,7 @@ start_wired() {
     echo "Disconnecting any existing wireless connections..."
     adb disconnect
     echo "Starting scrcpy in wired mode..."
-    scrcpy
+    scrcpy -K
 }
 
 # Function to start scrcpy in wireless mode
@@ -23,7 +23,7 @@ start_wireless() {
         if [ "$use_last_ip" = "y" ]; then
             IP_ADDRESS=$(cat "$LAST_IP_FILE")
             adb connect "$IP_ADDRESS":5555
-            scrcpy
+            scrcpy -K
             exit 0
         fi
     fi
@@ -81,7 +81,7 @@ start_wireless() {
 
     adb -s "$DEVICE_ID" tcpip 5555
     adb connect "$IP_ADDRESS":5555
-    scrcpy
+    scrcpy -K
 }
 
 # Main script logic
